@@ -1,0 +1,58 @@
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 20px;
+    width: 450px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.btn {
+    font-size: 20px;
+    font-family:'Courier New', Courier, monospace;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: RGB(25, 25, 25);
+    color: RGB(255, 255, 255);
+    border: solid 3px RGB(80, 80, 80);
+}
+
+.btn:hover {
+    border: solid 3px RGB(130, 0, 0);
+}
+
+.btn:active {
+    transform: scale(0.9);
+}
+
+.div-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-body {
+    padding: 20px;
+    border: solid 5px red;
+    background-color: yellow;
+    display: flex;
+}
+
+.div-style {
+    width: 25px;
+    height: 25px;
+    flex: 1 1 auto;
+    background-color: RGB(0, 0, 0);
+    border: solid 3px RGB(255, 255, 255);
+}
+
+.div-color-change {
+    background-color: RGB(255, 0, 0);
+}
