@@ -3,17 +3,12 @@ function getRandomColor() {
 }
 
 
-function addColorOnGrid() {
-    const divs = document.querySelectorAll('.div-style');
+function addBlackAndWhiteGrid() {
+    const divs = document.querySelectorAll('.cel');
     divsArray = Array.from(divs);
     let colorIndex = 0;
     divsArray.forEach(div => {
         div.addEventListener('mouseover', e => {
-            //colorful grid
-              //rRed = getRandomColor();
-              //rGreen = getRandomColor();
-              //rBlue = getRandomColor();
-            //black and white grid
             for (let i = 0; i < 10; i++) {
                 if (colorIndex > 250) {
                     colorIndex = 0;
@@ -21,62 +16,112 @@ function addColorOnGrid() {
                 else {
                     colorIndex = colorIndex + (255/10);
                 }
-            }
-            div.style.backgroundColor = `RGB(${colorIndex}, ${colorIndex}, ${colorIndex})`;
+            div.style.backgroundColor = `RGB(${colorIndex}, ${colorIndex}, ${colorIndex})`;}})
         })
-    })    
+    }
+    
+    
+function addColorfulGrid() {
+    const divs = document.querySelectorAll('.cel');
+    divsArray = Array.from(divs);
+    let colorIndex = 0;
+    divsArray.forEach(div => {
+        div.addEventListener('mouseover', e => {
+            //colorful grid
+            rRed = getRandomColor();
+            rGreen = getRandomColor();
+            rBlue = getRandomColor();
+            div.style.backgroundColor = `RGB(${rRed}, ${rGreen}, ${rBlue})`;})
+        })
+    }
+
+const pen = document.getElementById('color');
+//set a default value
+pen.addEventListener ('input', e => {
+    const defaultColor = document.getElementById('color').value;
+    newColor = defaultColor;
+    addDefaultGridColor(newColor);
+})
+
+function addDefaultGridColor(defaultColor = 'black') {
+    const divs = document.querySelectorAll('.cel');
+    divsArray = Array.from(divs);
+    divsArray.forEach(div => {
+        div.addEventListener('mouseover', e => {
+            div.style.backgroundColor = defaultColor;})
+    })
 }
 
-function createGrid(maxGrid = 16) {
-    for (let i = 0; i < maxGrid; i++) {
-        const divRow = document.createElement('div');
-        divRow.classList.add('div-row');
-        for (let j = 0; j < maxGrid; j++) {
+
+function createGrid() {
+    const gridBody = document.querySelector('.grid-body');
+    for (let i = 0; i < 16; i++) {
+        for (let j = 0; j < 16; j++) {
             const div = document.createElement('div');
-            div.classList.add('div-style');
-            divRow.appendChild(div);
+            div.classList.add('cel');
+            gridBody.appendChild(div);
         }
-        body.appendChild(divRow);
     }
-    addColorOnGrid();
+    addDefaultGridColor();
 }
 
 function userCreatesGrid() {
-    const gridBtn = document.getElementById('grid-button');
-    gridBtn.addEventListener('click', e => {
-    let input = window.prompt('Enter number of grid');
-    userInput = parseInt(input);
-    if (userInput < 1 || userInput > 100 || isNaN(userInput)) {
-        alert ("wrong input.");
-        return;
-    }
-    else {
-        const divs = document.querySelectorAll('.div-style');
-        divs.forEach(div => {
-            div.remove();
-        })
-        createGrid(userInput);
-    }
-})
+    const gridBody = document.querySelector('.grid-body');
+    const slider = document.getElementById('myRange');
+    slider.addEventListener ('input', e => {
+    const sliderValue = document.getElementById('myRange').value;
+    const divs = document.querySelectorAll('.cel');
+    divs.forEach(div => {
+        div.remove();
+    })
+    gridBody.setAttribute('style', `grid-template-columns: repeat(${sliderValue}, 1fr);
+                                    grid-template-rows: repeat(${sliderValue}, 1fr);`);
+    for (let i = 0; i < sliderValue; i++) {
+        for (let j = 0; j < sliderValue; j++) {
+            const div = document.createElement('div');
+            div.classList.add('cel');
+            gridBody.appendChild(div);
+            }
+        }
+    const color = document.getElementById('color').value;
+    addDefaultGridColor(color);
+    })
 }
 
 function ResetGrid() {
     const resetBtn = document.getElementById('reset-button');
     resetBtn.addEventListener ('click', e => {
-        const divs = document.querySelectorAll('.div-style');
+        const divs = document.querySelectorAll('.cel');
         divs.forEach (div => {
-            div.style.backgroundColor = 'RGB(0, 0, 0)';
+            div.style.backgroundColor = 'RGB(255, 255, 255)';
         })
     })
 }
 
-const body = document.querySelector('.grid-body');
-//create a default grid
-createGrid();
-userCreatesGrid();
-ResetGrid();
+function toBaW() {
+    const btn = document.getElementById('BaW');
+    btn.addEventListener ('click', e => {
+        addBlackAndWhiteGrid();
+    })
+}
 
-//problem 1: pixel not fixed
-//problem 2: linear gauge chart
-//problem 3: make two buttons for each color grid
+function toColorful() {
+    const btn = document.getElementById('colorful');
+    btn.addEventListener ('click', e => {
+        addColorfulGrid();
+    })
+}
+
+createGrid();
+ResetGrid();
+userCreatesGrid();
+toBaW();
+toColorful();
+
+
+
+//create a default grid
+//problem 1: pixel not fixed SOLVED
+//problem 2: linear gauge chart SOLVED
+//problem 3: make two buttons for each color grid SOLVED
  

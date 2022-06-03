@@ -7,12 +7,30 @@
         <script src="java.js" defer></script>
     </head>
     <body>
-        <div class="btn-group">
-            <button class="btn" id="grid-button">Enter number of grid</button>
-            <button class="btn" id="reset-button">Reset</button>
+        <div class="navbar">
+            <h1 style="text-shadow: 3px 3px 5px;"> Etch a sketch</h1>
         </div>
-        <div class="grid-body">
-
+        <div class="main">
+            <div class="contents">
+                <div class="btn-group-contents">
+                    <h1 style="text-align: center; font-style: italic; text-shadow: 3px 3px 5px;"> Palette </h1>
+                    <div class="slide-container">
+                        <input type="range" min="1" max="100" value="16" class="slider" id="myRange">
+                    </div>
+                    <button class="btn" id="reset-button">Reset</button>
+                    <div class="palette">
+                        <img src="https://specialtaxesandservices.com/wp-content/uploads/2019/03/cropped-pen-sketch-illustration-hand-drawn-animation-transparent_r3ij0ajf__F0014-1.png" class="img">
+                        <input type="color" id="color">
+                    </div>
+                    <button class="btn" id="colorful"> Rainbow </button>
+                    <button class="btn" id="BaW">Black and White</button>
+                </div>
+                <div class="grid-body">
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p> Made by @moonsol124 </p>
         </div>
     </body>
 </html>
